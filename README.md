@@ -1,9 +1,9 @@
 # How to run HogeBankApplicationTest
 
 1. Clone this repo into your local directory (required git in your machine)
-2. Install node js - https://nodejs.org/en/download/ 
+2. Install node js - https://nodejs.org/en/download/ (if you never install node js)
 3. Open command line and navigate to your cloned directory
-4. Install cypress
+4. Install cypress (if you never install cypress)
 ```sh
 npx cypress install
 ```
