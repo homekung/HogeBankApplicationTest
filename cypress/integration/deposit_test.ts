@@ -109,7 +109,7 @@ describe('deposit test suite', () => {
         portfolioPage.clickDepositMenu();
         depositPage.inputDepositAmount('5000');
         depositPage.clickDeposit();
-        cy.wait(10000)
+        cy.wait(10000);
 
         // assert
         portfolioPage.verifyTotalBalance('17000');
@@ -125,7 +125,7 @@ describe('deposit test suite', () => {
         portfolioPage.clickDepositMenu();
 
         // assert
-        depositPage.verifyWarningMessage('')
+        depositPage.VerifyWarningMessageNotShow('Failed to deposit.');
     })
 
     afterEach(() => {

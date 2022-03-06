@@ -128,14 +128,15 @@ describe('withdraw test suite', () => {
 
     it('Verify user is able to withdraw before balance is updated from deposit', function(){
         
-        portfolioPage.clickWithDrawMenu();
+        portfolioPage.clickDepositMenu();
         depositPage.inputDepositAmount('8000');
         depositPage.clickDeposit();
         portfolioPage.verifyTotalBalance('10000');
         portfolioPage.clickWithDrawMenu();
+        cy.wait(1000);
         withdrawPage.inputWithdrawAmount('12000');
         withdrawPage.clickWithdraw();
-        cy.wait(10000)
+        cy.wait(10000);
 
         // assert
         portfolioPage.verifyTotalBalance('0');
@@ -151,7 +152,7 @@ describe('withdraw test suite', () => {
         portfolioPage.clickWithDrawMenu();
 
         // assert
-        withdrawPage.verifyWarningMessage('')
+        withdrawPage.VerifyWarningMessageNotShow('Failed to withdraw.')
     })
 
     afterEach(() => {

@@ -30,7 +30,7 @@ describe('sign up test suite', () => {
         signUpPage.verifyWarningMessage('User name cannot contain whitespaces');
     })
 
-    it('Verify Warning message - Password cannot be less than 8 characters test (length 7 - edge case)', function(){
+    it('Verify Warning message - Password cannot be less than 8 characters test (length 7)', function(){
         signUpPage.enterUserName('testUser');
         signUpPage.enterPassword('Test12');
         signUpPage.clickSingUp();
@@ -39,7 +39,55 @@ describe('sign up test suite', () => {
         signUpPage.verifyWarningMessage('Password cannot be less than 8 characters');
     })
 
-    it('Verify Warning message - Password cannot be larger than 32 characters test (length 33 - edge case)', function(){
+    it('Verify sign up new user successfully with password length at 8', function(){
+        const testName = 'testName$' + Cypress._.random(0, 1e6);
+        signUpPage.enterUserName(testName);
+        signUpPage.enterPassword('Test1234');
+        signUpPage.clickSingUp();
+
+        // assert
+        cy.wait(1000);
+        portfolioPage.verifyUsername(testName);
+        portfolioPage.clickLogOut();
+    })
+
+    it('Verify sign up new user successfully with password length at 9', function(){
+        const testName = 'testName$' + Cypress._.random(0, 1e6);
+        signUpPage.enterUserName(testName);
+        signUpPage.enterPassword('Test12345');
+        signUpPage.clickSingUp();
+
+        // assert
+        cy.wait(1000);
+        portfolioPage.verifyUsername(testName);
+        portfolioPage.clickLogOut();
+    })
+
+    it('Verify sign up new user successfully with password length at 31', function(){
+        const testName = 'testName$' + Cypress._.random(0, 1e6);
+        signUpPage.enterUserName(testName);
+        signUpPage.enterPassword('Test123456789012345678901234567');
+        signUpPage.clickSingUp();
+
+        // assert
+        cy.wait(1000);
+        portfolioPage.verifyUsername(testName);
+        portfolioPage.clickLogOut();
+    })
+
+    it('Verify sign up new user successfully with password length at 32', function(){
+        const testName = 'testName$' + Cypress._.random(0, 1e6);
+        signUpPage.enterUserName(testName);
+        signUpPage.enterPassword('Test1234567890123456789012345678');
+        signUpPage.clickSingUp();
+
+        // assert
+        cy.wait(1000);
+        portfolioPage.verifyUsername(testName);
+        portfolioPage.clickLogOut();
+    })
+
+    it('Verify Warning message - Password cannot be larger than 32 characters test (length 33)', function(){
         signUpPage.enterUserName('testUser');
         signUpPage.enterPassword('Test12345678901234567890123456789');
         signUpPage.clickSingUp();
@@ -81,41 +129,19 @@ describe('sign up test suite', () => {
         signUpPage.verifyWarningMessage('Password must contain numbers');
     })
 
-    it('Verify Warning message - username is existing', function(){
+    it('Verify Warning message - username is already exist', function(){
         const testName = 'testName$' + Cypress._.random(0, 1e6);
         signUpPage.enterUserName(testName);
-        signUpPage.enterPassword('Test12345');
+        signUpPage.enterPassword('Test123450000');
         signUpPage.clickSingUp();
         portfolioPage.verifyUsername(testName);
         portfolioPage.clickLogOut();
         signUpPage.enterUserName(testName);
-        signUpPage.enterPassword('Test12345');
+        signUpPage.enterPassword('Test123450000');
         signUpPage.clickSingUp();
 
         // assert
-        signUpPage.verifyWarningMessage('username is existing');
-    })
-
-    it('Verify sign up new user successfully with password length at 8 (edge case)', function(){
-        const testName = 'testName$' + Cypress._.random(0, 1e6);
-        signUpPage.enterUserName(testName);
-        signUpPage.enterPassword('Test1234');
-        signUpPage.clickSingUp();
-
-        // assert
-        portfolioPage.verifyUsername(testName);
-        portfolioPage.clickLogOut();
-    })
-
-    it('Verify sign up new user successfully with password length at 32 (edge case)', function(){
-        const testName = 'testName$' + Cypress._.random(0, 1e6);
-        signUpPage.enterUserName(testName);
-        signUpPage.enterPassword('Test1234567890123456789012345678');
-        signUpPage.clickSingUp();
-
-        // assert
-        portfolioPage.verifyUsername(testName);
-        portfolioPage.clickLogOut();
+        signUpPage.verifyWarningMessage('username is already exist');
     })
 
 

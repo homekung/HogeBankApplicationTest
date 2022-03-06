@@ -26,4 +26,9 @@ export class WithdrawPage{
         cy.get(this.withdrawPage_withdrawMessage)
             .should('contain', expectedMessage);
     }
+
+    VerifyWarningMessageNotShow(expectedMessage: string){
+        cy.get(this.withdrawPage_withdrawMessage)
+            .should('not.contain', expectedMessage);
+    }
 }

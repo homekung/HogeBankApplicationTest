@@ -20,6 +20,8 @@ describe('log in test suite', () => {
         signUpPage.enterUserName(testName);
         signUpPage.enterPassword(password);
         signUpPage.clickSingUp();
+        
+        cy.wait(1000);
         portfolioPage.clickLogOut();
         loginPage.navigate();
         loginPage.enterUserName(testName);
@@ -50,6 +52,7 @@ describe('log in test suite', () => {
         signUpPage.enterUserName(testName);
         signUpPage.enterPassword(password);
         signUpPage.clickSingUp();
+        cy.wait(1000);
         portfolioPage.clickLogOut();
         loginPage.navigate();
         loginPage.enterUserName(testName);
@@ -68,6 +71,7 @@ describe('log in test suite', () => {
         signUpPage.enterUserName(testName);
         signUpPage.enterPassword(password);
         signUpPage.clickSingUp();
+        cy.wait(1000);
         portfolioPage.clickLogOut();
         loginPage.navigate();
         loginPage.enterUserName(testName);

@@ -5,6 +5,7 @@ export class PortfolioPage{
     private portfolioPage_withdrawLink = 'h2 > :nth-child(2)';
     private portfolioPage_logOutButton = 'button';
     private portfolioPage_balanceAmount = ':nth-child(2) > :nth-child(2) > :nth-child(1) > :nth-child(2)';
+    private portfolioPage_userName = 'th';
 
     navigate(){
         cy.visit(this.portfolioPage_url);
@@ -28,7 +29,7 @@ export class PortfolioPage{
     }
     
     verifyUsername(expectedUserName: string){
-        cy.get('th')
+        cy.get(this.portfolioPage_userName)
             .should('contain', expectedUserName);
     }
 }

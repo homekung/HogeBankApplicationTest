@@ -26,4 +26,9 @@ export class DepositPage{
         cy.get(this.depositPage_depositMessage)
             .should('contain', expectedMessage);
     }
+
+    VerifyWarningMessageNotShow(expectedMessage: string){
+        cy.get(this.depositPage_depositMessage)
+            .should('not.contain', expectedMessage);
+    }
 }
