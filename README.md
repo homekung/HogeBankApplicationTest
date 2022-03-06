@@ -1,6 +1,4 @@
-# HogeBankApplicationTest
-
-## How to run HogeBankApplicationTest
+# How to run HogeBankApplicationTest
 
 1. Clone this repo into your local directory
 2. Open command line and navigate to your cloned directory
