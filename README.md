@@ -13,7 +13,7 @@ npx cypress run
 ```
 or specific file (test suit) to run
 ```sh
-cypress run --spec "cypress/integration/login_test.ts"
+npx cypress run --spec "cypress/integration/login_test.ts"
 ```
 6. Option to run on Cypress UI
 ```sh
