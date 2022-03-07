@@ -51,17 +51,27 @@ describe('deposit test suite', () => {
         portfolioPage.verifyTotalBalance('10070');
     })
 
-    it('Verify transaction withdraw complete with comma and dot in amount and balance update within 10 second', function(){
+    it('Verify transaction deposit complete with comma in amount and balance update within 10 second', function(){
         
         portfolioPage.clickDepositMenu();
-        depositPage.inputDepositAmount('1,000.00');
+        depositPage.inputDepositAmount('1,000');
         depositPage.clickDeposit();
         portfolioPage.verifyTotalBalance('10000');
         cy.wait(10000)
-        portfolioPage.verifyTotalBalance('9000');
+        portfolioPage.verifyTotalBalance('10700');
     })
 
-    it('Verify warning message when input text as deposit amount', function(){
+    it('Verify transaction deposit complete with dot in amount and balance update within 10 second', function(){
+        
+        portfolioPage.clickDepositMenu();
+        depositPage.inputDepositAmount('1000.00');
+        depositPage.clickDeposit();
+        portfolioPage.verifyTotalBalance('10000');
+        cy.wait(10000)
+        portfolioPage.verifyTotalBalance('10700');
+    })
+
+    it('Verify warning message when input characters text as deposit amount', function(){
         
         portfolioPage.clickDepositMenu();
         depositPage.inputDepositAmount('tttt');
@@ -91,7 +101,7 @@ describe('deposit test suite', () => {
         depositPage.verifyWarningMessage('Failed to deposit.')
     })
 
-    it('Verify warning message when input empty as deposit amount', function(){
+    it('Verify warning message when input nothing as deposit amount', function(){
         
         portfolioPage.clickDepositMenu();
         depositPage.clickDeposit();

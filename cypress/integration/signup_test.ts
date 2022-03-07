@@ -13,7 +13,7 @@ describe('sign up test suite', () => {
         loginPage.clickSingUp();
     })
 
-    it('Verify Warning message - User name cannot be blank test', function(){
+    it('Verify Warning message - User name cannot be blank', function(){
         signUpPage.enterPassword('Test12345');
         signUpPage.clickSingUp();
 
@@ -21,7 +21,7 @@ describe('sign up test suite', () => {
         signUpPage.verifyWarningMessage('User name cannot be blank');
     })
 
-    it('Verify Warning message - Username cannot contain whitespaces test', function(){
+    it('Verify Warning message - Username cannot contain whitespaces', function(){
         signUpPage.enterUserName('test user');
         signUpPage.enterPassword('Test12345');
         signUpPage.clickSingUp();

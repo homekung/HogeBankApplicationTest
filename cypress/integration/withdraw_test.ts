@@ -53,17 +53,27 @@ describe('withdraw test suite', () => {
         portfolioPage.verifyTotalBalance('9870');
     })
 
-    it('Verify transaction withdraw complete with comma and dot in amount and balance update within 10 second', function(){
+    it('Verify transaction withdraw complete with comma in amount and balance update within 10 second', function(){
         
         portfolioPage.clickWithDrawMenu();
-        withdrawPage.inputWithdrawAmount('1,000.00');
+        withdrawPage.inputWithdrawAmount('1,000');
         withdrawPage.clickWithdraw();
         portfolioPage.verifyTotalBalance('10000');
         cy.wait(10000)
         portfolioPage.verifyTotalBalance('8700');
     })
 
-    it('Verify warning message when input text as withdraw amount', function(){
+    it('Verify transaction withdraw complete with dot in amount and balance update within 10 second', function(){
+        
+        portfolioPage.clickWithDrawMenu();
+        withdrawPage.inputWithdrawAmount('1000.00');
+        withdrawPage.clickWithdraw();
+        portfolioPage.verifyTotalBalance('10000');
+        cy.wait(10000)
+        portfolioPage.verifyTotalBalance('8700');
+    })
+
+    it('Verify warning message when input character text as withdraw amount', function(){
         
         portfolioPage.clickWithDrawMenu();
         withdrawPage.inputWithdrawAmount('tttt');
@@ -93,7 +103,7 @@ describe('withdraw test suite', () => {
         withdrawPage.verifyWarningMessage('Failed to withdraw.')
     })
 
-    it('Verify warning message when input empty as withdraw amount', function(){
+    it('Verify warning message when input nothing as withdraw amount', function(){
         
         portfolioPage.clickWithDrawMenu();
         withdrawPage.clickWithdraw();
@@ -112,7 +122,7 @@ describe('withdraw test suite', () => {
         withdrawPage.verifyWarningMessage('Failed to withdraw.')
     })
 
-    it('Verify warning message when trying to withdraw before balance is updated', function(){
+    it('Verify warning message when trying to withdraw before balance is updated (second withdraw is more than balance)', function(){
         
         portfolioPage.clickWithDrawMenu();
         withdrawPage.inputWithdrawAmount('5000');
@@ -124,6 +134,21 @@ describe('withdraw test suite', () => {
 
         // assert
         withdrawPage.verifyWarningMessage('Failed to withdraw.')
+    })
+
+    it('Verify user able to withdraw before balance is updated (second withdraw is less than balance)', function(){
+        
+        portfolioPage.clickWithDrawMenu();
+        withdrawPage.inputWithdrawAmount('5000');
+        withdrawPage.clickWithdraw();
+        portfolioPage.verifyTotalBalance('10000');
+        portfolioPage.clickWithDrawMenu();
+        withdrawPage.inputWithdrawAmount('1000');
+        withdrawPage.clickWithdraw();
+        cy.wait(10000);
+
+        // assert
+        portfolioPage.verifyTotalBalance('2200');
     })
 
     it('Verify user is able to withdraw before balance is updated from deposit', function(){
