@@ -44,6 +44,26 @@ describe('log in test suite', () => {
         loginPage.verifyWarningMessage('User not found');
     })
 
+    it('Verify warning message - User name cannot be blank', function(){
+        const password = 'Test12345';
+
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+
+        // assert
+        loginPage.verifyWarningMessage('User name cannot be blank');
+    })
+
+    it('Verify warning message - Password cannot be blank', function(){
+        const testName = 'testName$' + Cypress._.random(0, 1e6);
+        
+        loginPage.enterUserName(testName);
+        loginPage.clickLogin();
+
+        // assert
+        loginPage.verifyWarningMessage('Password cannot be blank');
+    })
+
     it('Verify warning message when enter wrong password which is correct format', function(){
         const testName = 'testName$' + Cypress._.random(0, 1e6);
         const password = 'Test12345';

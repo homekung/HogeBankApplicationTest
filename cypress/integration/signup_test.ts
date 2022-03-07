@@ -30,6 +30,14 @@ describe('sign up test suite', () => {
         signUpPage.verifyWarningMessage('User name cannot contain whitespaces');
     })
 
+    it('Verify Warning message when password is blank', function(){
+        signUpPage.enterUserName('testUser');
+        signUpPage.clickSingUp();
+
+        // assert
+        signUpPage.verifyWarningMessage('Password cannot be less than 8 characters');
+    })
+
     it('Verify Warning message - Password cannot be less than 8 characters test (length 7)', function(){
         signUpPage.enterUserName('testUser');
         signUpPage.enterPassword('Test123');
