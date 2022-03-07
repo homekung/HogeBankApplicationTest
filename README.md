@@ -15,7 +15,7 @@ or specific file (test suit) to run
 ```sh
 cypress run --spec "cypress/integration/login_test.ts"
 ```
-4. Option to run on Cypress UI
+6. Option to run on Cypress UI
 ```sh
 npx cypress open
 ```
