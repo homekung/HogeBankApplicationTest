@@ -115,7 +115,14 @@ describe('withdraw test suite', () => {
     it('Verify warning message when withdraw more than balance', function(){
         
         portfolioPage.clickWithDrawMenu();
-        withdrawPage.inputWithdrawAmount('500000');
+        withdrawPage.inputWithdrawAmount('10001');
+        withdrawPage.clickWithdraw();
+
+        // assert
+        withdrawPage.verifyWarningMessage('Failed to withdraw.')
+
+        withdrawPage.clearWithdrawAmount();
+        withdrawPage.inputWithdrawAmount('10000.1');
         withdrawPage.clickWithdraw();
 
         // assert

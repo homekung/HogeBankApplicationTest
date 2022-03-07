@@ -32,7 +32,7 @@ describe('sign up test suite', () => {
 
     it('Verify Warning message - Password cannot be less than 8 characters test (length 7)', function(){
         signUpPage.enterUserName('testUser');
-        signUpPage.enterPassword('Test12');
+        signUpPage.enterPassword('Test123');
         signUpPage.clickSingUp();
 
         // assert

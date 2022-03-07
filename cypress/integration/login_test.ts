@@ -44,9 +44,10 @@ describe('log in test suite', () => {
         loginPage.verifyWarningMessage('User not found');
     })
 
-    it('Verify warning message when enter wrong password (starting with correct password)', function(){
+    it('Verify warning message when enter wrong password which is correct format', function(){
         const testName = 'testName$' + Cypress._.random(0, 1e6);
         const password = 'Test12345';
+        const incorrectPassword = 'Abc456789';
         
         loginPage.clickSingUp();
         signUpPage.enterUserName(testName);
@@ -56,7 +57,7 @@ describe('log in test suite', () => {
         portfolioPage.clickLogOut();
         loginPage.navigate();
         loginPage.enterUserName(testName);
-        loginPage.enterPassword(password + 'x');
+        loginPage.enterPassword(incorrectPassword);
         loginPage.clickLogin();
 
         // assert
