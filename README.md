@@ -7,7 +7,16 @@
 ```sh
 npx cypress install
 ```
-5. Option to run test on command line
+5. Option to change site url, edit file cypress.json
+```sh
+{
+    "env": {
+        "url": "https://anylogi-recruitment.web.app/"
+      },
+    "defaultCommandTimeout": 6000
+}
+```
+6. Option to run test on command line
 ```sh
 npx cypress run
 ```
@@ -15,7 +24,7 @@ or specific file (test suit) to run
 ```sh
 npx cypress run --spec "cypress/integration/login_test.ts"
 ```
-6. Option to run on Cypress UI
+7. Option to run on Cypress UI
 ```sh
 npx cypress open
 ```
